@@ -1,5 +1,5 @@
 //
-//	msx_slot.v
+//	msx_slot_tncart_rev1.v
 //	 MSX Slot top entity
 //
 //	Copyright (C) 2025 Takayuki Hara
@@ -59,15 +59,15 @@ module msx_slot(
 	input			clk,
 	input			initial_busy,
 	//	MSX Slot Signal
-	input			p_slot_reset_n,
-	input			p_slot_ioreq_n,
 	input			p_slot_wr_n,
 	input			p_slot_rd_n,
-	input	[7:0]	p_slot_address,
 	inout	[7:0]	p_slot_data,
 	output			p_slot_int,				//	0 or HiZ: Normal, 1: Interrupt
 	output			p_slot_data_dir,		//	0: MSX→Cartridge (Write), 1: Cartridge→MSX (Read)
 	output			busdir,					//	0: MSX→Cartridge (Write), 1: Cartridge→MSX (Read)
+	output			p_slot_reset_n,
+	output [2:0]	p_buf_cs,
+	input [7:0]		p_buf_d,
 	//	Local BUS
 	input			int_n,
 	output	[2:0]	bus_address,
@@ -80,6 +80,19 @@ module msx_slot(
 	input			bus_rdata_en,
 	input			dipsw
 );
+	localparam			MIRROR = 0;
+
+	localparam CS_RESET = 0;	localparam BIT_RESET = 4;
+	localparam CS_IOREQ = 0;	localparam BIT_IOREQ = 1;
+	localparam CS_A0    = 1;	localparam BIT_A0    = 0;
+	localparam CS_A1    = 1;	localparam BIT_A1    = 1;
+	localparam CS_A2    = 1;	localparam BIT_A2    = 2;
+	localparam CS_A3    = 1;	localparam BIT_A3    = 3;
+	localparam CS_A4    = 1;	localparam BIT_A4    = 4;
+	localparam CS_A5    = 1;	localparam BIT_A5    = 5;
+	localparam CS_A6    = 1;	localparam BIT_A6    = 6;
+	localparam CS_A7    = 1;	localparam BIT_A7    = 7;
+
 	reg				ff_pre_slot_ioreq_n	= 1'b1;
 	reg				ff_pre_slot_wr_n	= 1'b1;
 	reg				ff_pre_slot_rd_n	= 1'b1;
@@ -118,48 +131,111 @@ module msx_slot(
 	end
 
 	// --------------------------------------------------------------------
-	//	非同期載せ替えのために 2回叩いておく
-	//	Pass through FF twice for asynchronous replacement.
+	//	chip select
 	// --------------------------------------------------------------------
-	always @( posedge clk ) begin
-		ff_pre_slot_ioreq_n		<= p_slot_ioreq_n;
-		ff_pre_slot_wr_n		<= p_slot_wr_n;
-		ff_pre_slot_rd_n		<= p_slot_rd_n;
+    reg [1:0] ff_buf_cs = 2'b10;
 
-		ff_slot_ioreq_n			<= ff_pre_slot_ioreq_n;
-		ff_slot_wr_n			<= ff_pre_slot_wr_n;
-		ff_slot_rd_n			<= ff_pre_slot_rd_n;
-	end
+    always @(posedge clk) begin
+        if(ff_state == 2'd0) begin
+            if(w_start_cond) begin
+                ff_buf_cs <= 2'b01;
+            end
+        end
+        else if(ff_state == 2'd3) begin
+            ff_buf_cs <= 2'b10;
+        end
+    end
 
-	always @( posedge clk or negedge p_slot_reset_n ) begin
-		if( !p_slot_reset_n ) begin
-			ff_iorq_wr			<= 1'b0;
-			ff_iorq_rd			<= 1'b0;
+    assign p_buf_cs[2] = ff_buf_cs[0];	// RESET, IOREQ
+    assign p_buf_cs[1] = ff_buf_cs[1];	// A0~7
+    assign p_buf_cs[0] = 1'b1;			// A8~15
+
+	// --------------------------------------------------------------------
+	//	start condition
+	// --------------------------------------------------------------------
+    wire w_start_cond = ~w_slot_ioreq_n & ~(w_slot_rd_n & w_slot_wr_n);
+
+	// --------------------------------------------------------------------
+	//	state
+	// --------------------------------------------------------------------
+    reg [1:0] ff_state = 2'd0;
+
+    always @(posedge clk) begin
+        if(ff_state == 2'd0) begin
+            if(w_start_cond) begin
+                ff_state <= ff_state + 1'd1;
+            end
+        end
+        else begin
+            ff_state <= ff_state + 1'd1;
+        end
+    end
+
+	// --------------------------------------------------------------------
+	//	信号入力
+	// --------------------------------------------------------------------
+	wire [1:0] w_ena;
+    assign w_ena[0] = (ff_state == 2'd0);
+    assign w_ena[1] = (ff_state == 2'd1) || (ff_state == 2'd2);
+
+	wire w_slot_rd_n;
+	wire w_slot_wr_n;
+	wire w_slot_reset_n;
+	wire w_slot_ioreq_n;
+	wire [7:0] w_slot_address;
+
+    tncart_sig_input u_rd_n    (.clk(clk), .ena(1'b1           ), .in(p_slot_rd_n       ), .out(w_slot_rd_n      ));
+    tncart_sig_input u_wr_n    (.clk(clk), .ena(1'b1           ), .in(p_slot_wr_n       ), .out(w_slot_wr_n      ));
+    tncart_sig_input u_reset_n (.clk(clk), .ena(w_ena[CS_RESET]), .in(p_buf_d[BIT_RESET]), .out(w_slot_reset_n   ));
+    tncart_sig_input u_ioreq_n (.clk(clk), .ena(w_ena[CS_IOREQ]), .in(p_buf_d[BIT_IOREQ]), .out(w_slot_ioreq_n   ));
+    tncart_sig_input u_addr_0  (.clk(clk), .ena(w_ena[CS_A0   ]), .in(p_buf_d[BIT_A0   ]), .out(w_slot_address[0]));
+    tncart_sig_input u_addr_1  (.clk(clk), .ena(w_ena[CS_A1   ]), .in(p_buf_d[BIT_A1   ]), .out(w_slot_address[1]));
+    tncart_sig_input u_addr_2  (.clk(clk), .ena(w_ena[CS_A2   ]), .in(p_buf_d[BIT_A2   ]), .out(w_slot_address[2]));
+    tncart_sig_input u_addr_3  (.clk(clk), .ena(w_ena[CS_A3   ]), .in(p_buf_d[BIT_A3   ]), .out(w_slot_address[3]));
+    tncart_sig_input u_addr_4  (.clk(clk), .ena(w_ena[CS_A4   ]), .in(p_buf_d[BIT_A4   ]), .out(w_slot_address[4]));
+    tncart_sig_input u_addr_5  (.clk(clk), .ena(w_ena[CS_A5   ]), .in(p_buf_d[BIT_A5   ]), .out(w_slot_address[5]));
+    tncart_sig_input u_addr_6  (.clk(clk), .ena(w_ena[CS_A6   ]), .in(p_buf_d[BIT_A6   ]), .out(w_slot_address[6]));
+    tncart_sig_input u_addr_7  (.clk(clk), .ena(w_ena[CS_A7   ]), .in(p_buf_d[BIT_A7   ]), .out(w_slot_address[7]));
+
+    always @(posedge clk) begin
+		if(!w_slot_reset_n) begin
+			ff_iorq_wr		<= 1'b0;
+			ff_iorq_rd		<= 1'b0;
 		end
 		else if( ff_initial_busy ) begin
 			//	hold
 		end
-		else begin
-			ff_iorq_wr			<= ~ff_slot_ioreq_n & ~ff_slot_wr_n;
-			ff_iorq_rd			<= ~ff_slot_ioreq_n & ~ff_slot_rd_n;
-		end
-	end
+		else if(ff_state == 2'd0) begin
+            if(w_slot_ioreq_n) begin
+                ff_iorq_rd	<= ~w_slot_rd_n & ~w_slot_ioreq_n;
+                ff_iorq_wr	<= ~w_slot_wr_n & ~w_slot_ioreq_n;
+            end
+            else if(w_slot_rd_n & w_slot_wr_n) begin
+                ff_iorq_rd	<= ~w_slot_rd_n & ~w_slot_ioreq_n;
+                ff_iorq_wr	<= ~w_slot_wr_n & ~w_slot_ioreq_n;
+            end
+        end
+        else if(ff_state == 2'd3) begin
+            ff_iorq_rd		<= ~w_slot_rd_n & ~w_slot_ioreq_n;
+            ff_iorq_wr		<= ~w_slot_wr_n & ~w_slot_ioreq_n;
+			ff_slot_data	<= p_slot_data;
+        end
+    end
 
 	// --------------------------------------------------------------------
 	//	ff_slot_ioreq_n == 0 のタイミングでは、
 	//	アドレスと書き込み時のデータは確定済み
 	// --------------------------------------------------------------------
 	always @( posedge clk ) begin
-		if( !ff_slot_ioreq_n ) begin
-			ff_slot_address		<= p_slot_address;
+		if( !w_slot_ioreq_n ) begin
+			ff_slot_address		<= w_slot_address;
 		end
 	end
 
-	always @( posedge clk ) begin
-		if( !ff_slot_wr_n ) begin
-			ff_slot_data		<= p_slot_data;
-		end
-	end
+	// --------------------------------------------------------------------
+	//	reset
+	// --------------------------------------------------------------------
+	assign p_slot_reset_n = w_slot_reset_n;
 
 	// --------------------------------------------------------------------
 	//	Transaction active signal
@@ -229,10 +305,34 @@ module msx_slot(
 	assign bus_wdata		= ff_slot_data;
 	assign bus_write		= ff_write;
 	assign bus_valid		= ff_valid;
-	assign p_slot_data		= (ff_ioreq & ff_iorq_rd) ? ff_rdata: 8'hZZ;
-	assign p_slot_int		= ~int_n;
+	assign p_slot_data		= MIRROR ? 8'hZZ : ((ff_ioreq & ff_iorq_rd) ? ff_rdata: 8'hZZ);
+	assign p_slot_int		= MIRROR ? 1'b0 : ~int_n;
 
 	//	0: Cartridge <- CPU (Write or Idle), 1: Cartridge -> CPU (Read)
-	assign p_slot_data_dir	= ff_ioreq & ff_iorq_rd;
-	assign busdir			= ff_ioreq & ff_iorq_rd;
+	assign p_slot_data_dir	= MIRROR ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
+	assign busdir			= MIRROR ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
+endmodule
+
+module tncart_sig_input (
+	input clk,
+    input  in,
+    input  ena,
+    output  out
+)/* synthesis syn_preserve=1 */;
+	reg ff_out = 1'b1;
+    reg ff_pre = 1'b1;
+
+    assign out = ff_out;
+
+    always @(posedge clk) begin
+    	if(ena) begin
+        	if(ff_pre & in) begin
+            	ff_out <= ff_pre;
+            end
+        	else if(~ff_pre & ~in) begin
+            	ff_out <= ff_pre;
+            end
+            ff_pre <= in;
+        end
+    end
 endmodule

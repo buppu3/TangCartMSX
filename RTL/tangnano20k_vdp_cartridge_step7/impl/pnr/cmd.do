@@ -1,8 +1,8 @@
--d D:\github\HRA_product\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\gwsynthesis\tangnano20k_vdp_cartridge.vg
+-d C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\gwsynthesis\tangnano20k_vdp_cartridge_tncart_rev1.vg
 -p GW2AR-18C-QFN88-8
 -pn GW2AR-LV18QN88C8/I7
--cst D:\github\HRA_product\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge.cst
--cfg D:\github\HRA_product\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\pnr\device.cfg
+-cst C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.cst
+-cfg C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\pnr\device.cfg
 -bit
 -tr
 -ph

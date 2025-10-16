@@ -1,0 +1,103 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\debugger\ip_debugger.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_rpll_tncart_rev1\gowin_rpll.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_rpll2_tncart_rev1\gowin_rpll2.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\ram\ip_ram.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\sdram\ip_sdram_tangnano20k_c.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v'
+Undeclared symbol 'oe_n', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":118)
+Undeclared symbol 'slot_reset_n', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":158)
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp.v'
+Undeclared symbol 'w_cpu_vram_ready', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp.v":234)
+Undeclared symbol 'w_vram_interleave', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp.v":326)
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette_ram.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command.v'
+Undeclared symbol 'w_sx_active', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command.v":605)
+Undeclared symbol 'w_dx_active', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command.v":606)
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command_cache.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_cpu_interface.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_divide_table.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_info_collect.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_makeup_pixel.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_select_visible_planes.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_screen_mode.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_sprite.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_ssg.v'
+Undeclared symbol 'dot_phase', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_ssg.v":381)
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_upscan.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_upscan_line_buffer.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_double_buffer.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_out.v'
+Undeclared symbol 'w_display_en', assumed default net type 'wire'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_out.v":380)
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_out_bilinear.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_ram_line_buffer.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_vram_interface.v'
+Analyzing Verilog file 'C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\ws2812_led\ip_ws2812_led.v'
+Compiling module 'tangnano20k_vdp_cartridge'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":24)
+Compiling module 'Gowin_rPLL'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_rpll_tncart_rev1\gowin_rpll.v":10)
+Compiling module 'Gowin_rPLL2'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_rpll2_tncart_rev1\gowin_rpll2.v":10)
+Compiling module 'Gowin_CLKDIV'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_clkdiv\gowin_clkdiv.v":10)
+Compiling module 'msx_slot'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v":58)
+Compiling module 'tncart_sig_input'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v":316)
+Compiling module 'vdp'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp.v":58)
+Compiling module 'vdp_cpu_interface'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_cpu_interface.v":58)
+Compiling module 'vdp_timing_control'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control.v":57)
+Compiling module 'vdp_timing_control_ssg'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_ssg.v":58)
+Compiling module 'vdp_timing_control_screen_mode'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_screen_mode.v":58)
+Compiling module 'vdp_timing_control_sprite'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control_sprite.v":58)
+Compiling module 'vdp_sprite_select_visible_planes'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_select_visible_planes.v":58)
+Compiling module 'vdp_sprite_info_collect'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_info_collect.v":58)
+Compiling module 'vdp_sprite_makeup_pixel'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_makeup_pixel.v":58)
+Compiling module 'vdp_sprite_divide_table'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_sprite_divide_table.v":58)
+Compiling module 'vdp_command'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command.v":57)
+Compiling module 'vdp_command_cache'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_command_cache.v":57)
+Compiling module 'vdp_vram_interface'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_vram_interface.v":58)
+Compiling module 'vdp_color_palette'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette.v":58)
+Compiling module 'vdp_color_palette_ram'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette_ram.v":58)
+Extracting RAM for identifier 'ram_r'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette_ram.v":73)
+Extracting RAM for identifier 'ram_g'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette_ram.v":74)
+Extracting RAM for identifier 'ram_b'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_color_palette_ram.v":75)
+Compiling module 'vdp_upscan'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_upscan.v":60)
+Compiling module 'vdp_upscan_line_buffer'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_upscan_line_buffer.v":58)
+Extracting RAM for identifier 'ff_imem'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_upscan_line_buffer.v":66)
+Compiling module 'vdp_video_out'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_out.v":60)
+Compiling module 'vdp_video_double_buffer'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_double_buffer.v":58)
+Compiling module 'vdp_video_ram_line_buffer'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_ram_line_buffer.v":58)
+Extracting RAM for identifier 'ff_imem'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_ram_line_buffer.v":66)
+Compiling module 'vdp_video_out_bilinear'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_video_out_bilinear.v":60)
+Compiling module 'DVI_TX_Top'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\dvi_tx\dvi_tx.v":1072)
+Compiling module '**'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\dvi_tx\dvi_tx.v":1071)
+Compiling module 'ip_sdram'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\sdram\ip_sdram_tangnano20k_c.v":57)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 15("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\sdram\ip_sdram_tangnano20k_c.v":285)
+Compiling module 'ip_ws2812_led'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\ws2812_led\ip_ws2812_led.v":57)
+Compiling module 'ip_debugger'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\debugger\ip_debugger.v":57)
+NOTE  (EX0101) : Current top module is "tangnano20k_vdp_cartridge"
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input clk is unused("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":25)
+WARN  (CV0016) : Input button is unused("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":35)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "ip_debugger" instantiated to "u_debugger" is swept in optimizing("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":307)
+WARN  (NL0002) : The module "ip_ws2812_led" instantiated to "u_led" is swept in optimizing("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\tangnano20k_vdp_cartridge_tncart_rev1.v":286)
+[95%] Generate netlist file "C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\gwsynthesis\tangnano20k_vdp_cartridge_tncart_rev1.vg" completed
+[100%] Generate report file "C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\impl\gwsynthesis\tangnano20k_vdp_cartridge_tncart_rev1_syn.rpt.html" completed
+GowinSynthesis finish

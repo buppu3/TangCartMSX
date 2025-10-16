@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//	tangnano20k_vdp_cartridge.v
+//	tangnano20k_vdp_cartridge_tncart_rev1.v
 //	Copyright (C)2025 Takayuki Hara (HRA!)
 //	
 //	 Permission is hereby granted, free of charge, to any person obtaining a 
@@ -23,21 +23,18 @@
 
 module tangnano20k_vdp_cartridge (
 	input			clk,			//	PIN04		(27MHz)
-	input			clk14m,			//	PIN80
-	input			slot_reset_n,	//	PIN86
-	input			slot_iorq_n,	//	PIN71
+	input			clk4m,			//	
 	input			slot_rd_n,		//	PIN15
 	input			slot_wr_n,		//	PIN16
 	output			slot_wait,		//	PIN53
 	output			slot_intr,		//	PIN52
 	output			slot_data_dir,	//	PIN19
-	input	[7:0]	slot_a,			//	PIN17, 49, 48, 41, 42, 76, 31, 30
 	inout	[7:0]	slot_d,			//	PIN73, 74, 75, 85, 77, 27, 28, 29
 	output			busdir,			//	PIN72
-	output			oe_n,			//	PIN20
 	input			dipsw,			//	PIN18
-	output			ws2812_led,		//	PIN79
 	input	[1:0]	button,			//	PIN87, 88	KEY2, KEY1
+	output	[2:0]	buf_cs,
+	input	[7:0]	buf_d,
 
 	//	HDMI
 	output			tmds_clk_p,		//	(PIN33/34)
@@ -115,6 +112,8 @@ module tangnano20k_vdp_cartridge (
 	wire	[7:0]	w_blue;
 	wire			w_int_n;
 
+	wire			ws2812_led;						// dummy
+
 	assign slot_wait		= w_sdram_init_busy;
 	assign oe_n				= 1'b0;
 
@@ -134,14 +133,14 @@ module tangnano20k_vdp_cartridge (
 	Gowin_rPLL u_pll (
 		.clkout			( clk215m			),		//	output clkout	214.7727MHz
 		.lock			( pll_lock215		),
-		.clkin			( clk14m			)		//	input clkin		14.31818MHz
+		.clkin			( clk4m				)		//	input clkin		3.57MHz
 	);
 
 	Gowin_rPLL2 u_pll2 (
 		.clkout			( clk85m			),		//	output clkout	85.90908MHz
 		.lock			( pll_lock85		),
 		.clkoutp		( clk85m_n			),		//	output clkoutp	85.90908MHz (180deg phase shift)
-		.clkin			( clk14m			)		//	input clkin		14.31818MHz
+		.clkin			( clk4m				)		//	input clkin		3.57MHz
     );
 
 	Gowin_CLKDIV u_clkdiv (
@@ -156,16 +155,16 @@ module tangnano20k_vdp_cartridge (
 	msx_slot u_msx_slot (
 		.clk				( clk85m					),
 		.initial_busy		( w_sdram_init_busy			),
-		.p_slot_reset_n		( reset_n					),
-		.p_slot_ioreq_n		( slot_iorq_n				),
+		.p_slot_reset_n		( slot_reset_n				),
 		.p_slot_wr_n		( slot_wr_n					),
 		.p_slot_rd_n		( slot_rd_n					),
-		.p_slot_address		( slot_a					),
 		.p_slot_data		( slot_d					),
 		.p_slot_int			( slot_intr					),
 		.p_slot_data_dir	( slot_data_dir				),
 		.busdir				( busdir					),
 		.int_n				( w_int_n					),
+		.p_buf_cs			( buf_cs					),
+		.p_buf_d			( buf_d						),
 		.bus_address		( w_bus_address				),
 		.bus_ioreq			( w_bus_ioreq				),
 		.bus_write			( w_bus_write				),
@@ -273,7 +272,7 @@ module tangnano20k_vdp_cartridge (
 	);
 
 	// --------------------------------------------------------------------
-	//	Debug—p LED
+	//	Debug p LED
 	// --------------------------------------------------------------------
 	ip_ws2812_led u_led (
 		.reset_n			( reset_n				),
