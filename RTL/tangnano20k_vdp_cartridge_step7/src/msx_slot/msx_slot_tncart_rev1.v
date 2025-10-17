@@ -80,8 +80,6 @@ module msx_slot(
 	input			bus_rdata_en,
 	input			dipsw
 );
-	localparam			MIRROR = 0;
-
 	localparam CS_RESET = 0;	localparam BIT_RESET = 4;
 	localparam CS_IOREQ = 0;	localparam BIT_IOREQ = 1;
 	localparam CS_A0    = 1;	localparam BIT_A0    = 0;
@@ -115,8 +113,10 @@ module msx_slot(
 	reg		[7:0]	ff_rdata			= 8'd0;
 	reg				ff_rdata_en			= 1'b0;
 	wire	[7:0]	w_io_address;
+	wire			w_mirror;
 
 	assign w_io_address	= (dipsw == 1'b0) ? 8'h88: 8'h98;
+	assign w_mirror		= (dipsw == 1'b0) ? 1'b0 : 1'b1;
 
 	// --------------------------------------------------------------------
 	//	Initial busy latch
@@ -305,12 +305,12 @@ module msx_slot(
 	assign bus_wdata		= ff_slot_data;
 	assign bus_write		= ff_write;
 	assign bus_valid		= ff_valid;
-	assign p_slot_data		= MIRROR ? 8'hZZ : ((ff_ioreq & ff_iorq_rd) ? ff_rdata: 8'hZZ);
-	assign p_slot_int		= MIRROR ? 1'b0 : ~int_n;
+	assign p_slot_data		= w_mirror ? 8'hZZ : ((ff_ioreq & ff_iorq_rd) ? ff_rdata: 8'hZZ);
+	assign p_slot_int		= w_mirror ? 1'b0 : ~int_n;
 
 	//	0: Cartridge <- CPU (Write or Idle), 1: Cartridge -> CPU (Read)
-	assign p_slot_data_dir	= MIRROR ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
-	assign busdir			= MIRROR ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
+	assign p_slot_data_dir	= w_mirror ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
+	assign busdir			= w_mirror ? 1'b1 : ~(ff_ioreq & ff_iorq_rd);
 endmodule
 
 module tncart_sig_input (
