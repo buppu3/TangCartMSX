@@ -5,3 +5,4 @@ MSX用に TangNano9K を搭載したカートリッジを作成し、
 tangnano20k_vdp_cartridge_step7 実験用のブランチです。
 - テストプログラム以外の動作がおかしい
 - PAL モードが動作しない
+- MSX 起動時のロゴが斜めに崩れる
