@@ -323,7 +323,7 @@ module vdp_cpu_interface (
 			end
 		end
 		else if( w_write && ff_port3 ) begin
-			ff_register_write	<= 1'b1;
+			ff_register_write	<= ff_indirect_write_enable;
 			ff_register_num		<= ff_register_pointer;
 			ff_1st_byte			<= ff_bus_wdata;
 		end
@@ -431,6 +431,10 @@ module vdp_cpu_interface (
 			end
 		end
 	end
+
+	// Port#3 から VDP レジスタの書き換え許可フラグ
+	reg ff_indirect_write_enable;
+	always @(posedge clk) ff_indirect_write_enable <= ff_register_pointer != 6'd17;
 
 	// --------------------------------------------------------------------
 	//	Control registers

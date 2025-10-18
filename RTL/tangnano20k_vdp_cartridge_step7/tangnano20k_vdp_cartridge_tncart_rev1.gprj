@@ -8,8 +8,8 @@
         <File path="src/debugger/ip_debugger.v" type="file.verilog" enable="1"/>
         <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
-        <File path="src/gowin_rpll_tncart_rev1/gowin_rpll.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_rpll2_tncart_rev1/gowin_rpll2.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll_tncart_rev1/gowin_rpll.v" type="file.verilog" enable="1"/>
         <File path="src/msx_slot/msx_slot_tncart_rev1.v" type="file.verilog" enable="1"/>
         <File path="src/ram/ip_ram.v" type="file.verilog" enable="1"/>
         <File path="src/sdram/ip_sdram_tangnano20k_c.v" type="file.verilog" enable="1"/>
