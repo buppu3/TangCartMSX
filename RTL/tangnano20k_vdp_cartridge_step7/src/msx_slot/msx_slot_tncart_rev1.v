@@ -95,10 +95,6 @@ module msx_slot(
 	reg				ff_pre_slot_wr_n	= 1'b1;
 	reg				ff_pre_slot_rd_n	= 1'b1;
 
-	reg				ff_slot_ioreq_n		= 1'b1;
-	reg				ff_slot_wr_n		= 1'b1;
-	reg				ff_slot_rd_n		= 1'b1;
-
 	reg		[7:0]	ff_slot_address;
 	reg		[7:0]	ff_slot_data;
 	reg		[2:0]	ff_bus_address;
@@ -135,13 +131,13 @@ module msx_slot(
 	// --------------------------------------------------------------------
     reg [1:0] ff_buf_cs = 2'b10;
 
-    always @(posedge clk) begin
-        if(ff_state == 2'd0) begin
-            if(w_start_cond) begin
+    always @( posedge clk ) begin
+        if( ff_state == 2'd0 ) begin
+            if( w_start_cond ) begin
                 ff_buf_cs <= 2'b01;
             end
         end
-        else if(ff_state == 2'd3) begin
+        else if( ff_state == 2'd3 ) begin
             ff_buf_cs <= 2'b10;
         end
     end
@@ -151,18 +147,18 @@ module msx_slot(
     assign p_buf_cs[0] = 1'b1;			// A8~15
 
 	// --------------------------------------------------------------------
-	//	start condition
+	//	スキャン開始条件
 	// --------------------------------------------------------------------
     wire w_start_cond = ~w_slot_ioreq_n & ~(w_slot_rd_n & w_slot_wr_n);
 
 	// --------------------------------------------------------------------
-	//	state
+	//	スキャン遷移状態
 	// --------------------------------------------------------------------
     reg [1:0] ff_state = 2'd0;
 
-    always @(posedge clk) begin
-        if(ff_state == 2'd0) begin
-            if(w_start_cond) begin
+    always @( posedge clk ) begin
+        if( ff_state == 2'd0 ) begin
+            if( w_start_cond ) begin
                 ff_state <= ff_state + 1'd1;
             end
         end
@@ -197,37 +193,70 @@ module msx_slot(
     tncart_sig_input u_addr_6  (.clk(clk), .ena(w_ena[CS_A6   ]), .in(p_buf_d[BIT_A6   ]), .out(w_slot_address[6]));
     tncart_sig_input u_addr_7  (.clk(clk), .ena(w_ena[CS_A7   ]), .in(p_buf_d[BIT_A7   ]), .out(w_slot_address[7]));
 
+	// --------------------------------------------------------------------
+	//	スキャン開始時の RD/WR 要求を保持
+	// --------------------------------------------------------------------
+	reg ff_iorq_rd_pre;
+	reg ff_iorq_wr_pre;
+
+    always @( posedge clk ) begin
+		if( ff_state == 2'd0 && w_start_cond ) begin
+			ff_iorq_rd_pre	<= ~w_slot_rd_n & ~w_slot_ioreq_n;
+            ff_iorq_wr_pre	<= ~w_slot_wr_n & ~w_slot_ioreq_n;
+        end
+    end
+
+	// --------------------------------------------------------------------
+	//	スキャン完了時に RD/WR 要求を通知
+	// --------------------------------------------------------------------
     always @(posedge clk) begin
-		if(!w_slot_reset_n) begin
+		if( !w_slot_reset_n ) begin
 			ff_iorq_wr		<= 1'b0;
+		end
+		else if( ff_initial_busy ) begin
+			//	hold
+		end
+		else if( ff_state == 2'd0 ) begin
+            if( w_slot_ioreq_n | w_slot_wr_n ) begin
+                ff_iorq_wr	<= 1'b0;
+            end
+        end
+        else if( ff_state == 2'd3 ) begin
+            ff_iorq_wr		<= ff_iorq_wr_pre;
+        end
+    end
+
+    always @(posedge clk) begin
+		if( !w_slot_reset_n ) begin
 			ff_iorq_rd		<= 1'b0;
 		end
 		else if( ff_initial_busy ) begin
 			//	hold
 		end
-		else if(ff_state == 2'd0) begin
-            if(w_slot_ioreq_n) begin
-                ff_iorq_rd	<= ~w_slot_rd_n & ~w_slot_ioreq_n;
-                ff_iorq_wr	<= ~w_slot_wr_n & ~w_slot_ioreq_n;
-            end
-            else if(w_slot_rd_n & w_slot_wr_n) begin
-                ff_iorq_rd	<= ~w_slot_rd_n & ~w_slot_ioreq_n;
-                ff_iorq_wr	<= ~w_slot_wr_n & ~w_slot_ioreq_n;
+		else if( ff_state == 2'd0 ) begin
+            if( w_slot_ioreq_n | w_slot_rd_n ) begin
+                ff_iorq_rd	<= 1'b0;
             end
         end
-        else if(ff_state == 2'd3) begin
-            ff_iorq_rd		<= ~w_slot_rd_n & ~w_slot_ioreq_n;
-            ff_iorq_wr		<= ~w_slot_wr_n & ~w_slot_ioreq_n;
-			ff_slot_data	<= p_slot_data;
+        else if( ff_state == 2'd3 ) begin
+            ff_iorq_rd		<= ff_iorq_rd_pre;
         end
     end
 
 	// --------------------------------------------------------------------
-	//	ff_slot_ioreq_n == 0 のタイミングでは、
-	//	アドレスと書き込み時のデータは確定済み
+	//	スキャン開始時にデータは確定済み
 	// --------------------------------------------------------------------
 	always @( posedge clk ) begin
-		if( !w_slot_ioreq_n ) begin
+        if( ff_state == 2'd0 && ~w_slot_wr_n ) begin
+			ff_slot_data		<= p_slot_data;
+		end
+	end
+
+	// --------------------------------------------------------------------
+	//	スキャン完了するまでアドレスは確定しない
+	// --------------------------------------------------------------------
+	always @( posedge clk ) begin
+		if( ff_state == 2'd3 ) begin
 			ff_slot_address		<= w_slot_address;
 		end
 	end

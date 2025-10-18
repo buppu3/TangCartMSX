@@ -49,98 +49,98 @@
     "SubInsts" : [
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "InstLine" : 187,
+      "InstLine" : 183,
       "InstName" : "u_rd_n",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
+      "ModuleName" : "tncart_sig_input"
+     },
+     {
+      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "InstLine" : 184,
+      "InstName" : "u_wr_n",
+      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "ModuleLine" : 345,
+      "ModuleName" : "tncart_sig_input"
+     },
+     {
+      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "InstLine" : 185,
+      "InstName" : "u_reset_n",
+      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "ModuleLine" : 345,
+      "ModuleName" : "tncart_sig_input"
+     },
+     {
+      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "InstLine" : 186,
+      "InstName" : "u_ioreq_n",
+      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "ModuleLine" : 345,
+      "ModuleName" : "tncart_sig_input"
+     },
+     {
+      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "InstLine" : 187,
+      "InstName" : "u_addr_0",
+      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 188,
-      "InstName" : "u_wr_n",
+      "InstName" : "u_addr_1",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 189,
-      "InstName" : "u_reset_n",
+      "InstName" : "u_addr_2",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 190,
-      "InstName" : "u_ioreq_n",
+      "InstName" : "u_addr_3",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 191,
-      "InstName" : "u_addr_0",
+      "InstName" : "u_addr_4",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 192,
-      "InstName" : "u_addr_1",
+      "InstName" : "u_addr_5",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 193,
-      "InstName" : "u_addr_2",
+      "InstName" : "u_addr_6",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      },
      {
       "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
       "InstLine" : 194,
-      "InstName" : "u_addr_3",
-      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
-      "ModuleName" : "tncart_sig_input"
-     },
-     {
-      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "InstLine" : 195,
-      "InstName" : "u_addr_4",
-      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
-      "ModuleName" : "tncart_sig_input"
-     },
-     {
-      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "InstLine" : 196,
-      "InstName" : "u_addr_5",
-      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
-      "ModuleName" : "tncart_sig_input"
-     },
-     {
-      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "InstLine" : 197,
-      "InstName" : "u_addr_6",
-      "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
-      "ModuleName" : "tncart_sig_input"
-     },
-     {
-      "InstFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "InstLine" : 198,
       "InstName" : "u_addr_7",
       "ModuleFile" : "C:/git/TangCartMSX/RTL/tangnano20k_vdp_cartridge_step7/src/msx_slot/msx_slot_tncart_rev1.v",
-      "ModuleLine" : 316,
+      "ModuleLine" : 345,
       "ModuleName" : "tncart_sig_input"
      }
     ]

@@ -44,7 +44,7 @@ Compiling module 'Gowin_rPLL'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_
 Compiling module 'Gowin_rPLL2'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_rpll2_tncart_rev1\gowin_rpll2.v":10)
 Compiling module 'Gowin_CLKDIV'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\gowin_clkdiv\gowin_clkdiv.v":10)
 Compiling module 'msx_slot'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v":58)
-Compiling module 'tncart_sig_input'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v":316)
+Compiling module 'tncart_sig_input'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\msx_slot\msx_slot_tncart_rev1.v":345)
 Compiling module 'vdp'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp.v":58)
 Compiling module 'vdp_cpu_interface'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_cpu_interface.v":58)
 Compiling module 'vdp_timing_control'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_step7\src\th9958\vdp_timing_control.v":57)
