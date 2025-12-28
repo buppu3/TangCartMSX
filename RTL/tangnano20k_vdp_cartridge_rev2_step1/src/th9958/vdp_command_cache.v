@@ -504,6 +504,7 @@ module vdp_command_cache (
 						ff_vram_wdata		<= ff_cache0_data;
 						ff_vram_data_mask	<= ff_cache0_data_mask;
 						ff_cache0_address	<= cache_vram_address[17:2];
+						ff_cache0_already_read	<= 1'b0;	// 20251227:新しいアドレスなのでリード済データは無効
 						case( cache_vram_address[1:0] )
 						2'd0:	begin ff_cache0_data_mask <= 4'b1110; ff_cache0_data[ 7: 0] <= cache_vram_wdata; end
 						2'd1:	begin ff_cache0_data_mask <= 4'b1101; ff_cache0_data[15: 8] <= cache_vram_wdata; end
@@ -524,6 +525,7 @@ module vdp_command_cache (
 						ff_vram_wdata		<= ff_cache1_data;
 						ff_vram_data_mask	<= ff_cache1_data_mask;
 						ff_cache1_address	<= cache_vram_address[17:2];
+						ff_cache1_already_read	<= 1'b0;	//20251227: 新しいアドレスなのでリード済データは無効
 						case( cache_vram_address[1:0] )
 						2'd0:	begin ff_cache1_data_mask <= 4'b1110; ff_cache1_data[ 7: 0] <= cache_vram_wdata; end
 						2'd1:	begin ff_cache1_data_mask <= 4'b1101; ff_cache1_data[15: 8] <= cache_vram_wdata; end
@@ -544,6 +546,7 @@ module vdp_command_cache (
 						ff_vram_wdata		<= ff_cache2_data;
 						ff_vram_data_mask	<= ff_cache2_data_mask;
 						ff_cache2_address	<= cache_vram_address[17:2];
+						ff_cache2_already_read	<= 1'b0;	// 20251227:新しいアドレスなのでリード済データは無効
 						case( cache_vram_address[1:0] )
 						2'd0:	begin ff_cache2_data_mask <= 4'b1110; ff_cache2_data[ 7: 0] <= cache_vram_wdata; end
 						2'd1:	begin ff_cache2_data_mask <= 4'b1101; ff_cache2_data[15: 8] <= cache_vram_wdata; end
@@ -564,6 +567,7 @@ module vdp_command_cache (
 						ff_vram_wdata		<= ff_cache3_data;
 						ff_vram_data_mask	<= ff_cache3_data_mask;
 						ff_cache3_address	<= cache_vram_address[17:2];
+						ff_cache3_already_read	<= 1'b0;	// 20251227:新しいアドレスなのでリード済データは無効
 						case( cache_vram_address[1:0] )
 						2'd0:	begin ff_cache3_data_mask <= 4'b1110; ff_cache3_data[ 7: 0] <= cache_vram_wdata; end
 						2'd1:	begin ff_cache3_data_mask <= 4'b1101; ff_cache3_data[15: 8] <= cache_vram_wdata; end
@@ -635,7 +639,7 @@ module vdp_command_cache (
 				ff_cache0_data[23:16]	<= ff_cache0_data_mask[2] ? command_vram_rdata[23:16]: ff_cache0_data[23:16];
 				ff_cache0_data[31:24]	<= ff_cache0_data_mask[3] ? command_vram_rdata[31:24]: ff_cache0_data[31:24];
 				ff_cache0_data_en		<= 1'b1;
-				ff_cache0_data_mask		<= 4'b1111;
+				//ff_cache0_data_mask		<= 4'b1111;	// 20251227:書き込む済データが無効にならないように削除
 				ff_cache0_already_read	<= 1'b1;
 			end
 			2'd1:	begin
@@ -645,7 +649,7 @@ module vdp_command_cache (
 				ff_cache1_data[23:16]	<= ff_cache1_data_mask[2] ? command_vram_rdata[23:16]: ff_cache1_data[23:16];
 				ff_cache1_data[31:24]	<= ff_cache1_data_mask[3] ? command_vram_rdata[31:24]: ff_cache1_data[31:24];
 				ff_cache1_data_en		<= 1'b1;
-				ff_cache1_data_mask		<= 4'b1111;
+				//ff_cache1_data_mask		<= 4'b1111;	// 20251227:書き込む済データが無効にならないように削除
 				ff_cache1_already_read	<= 1'b1;
 			end
 			2'd2:	begin
@@ -655,7 +659,7 @@ module vdp_command_cache (
 				ff_cache2_data[23:16]	<= ff_cache2_data_mask[2] ? command_vram_rdata[23:16]: ff_cache2_data[23:16];
 				ff_cache2_data[31:24]	<= ff_cache2_data_mask[3] ? command_vram_rdata[31:24]: ff_cache2_data[31:24];
 				ff_cache2_data_en		<= 1'b1;
-				ff_cache2_data_mask		<= 4'b1111;
+				//ff_cache2_data_mask		<= 4'b1111;	// 20251227:書き込む済データが無効にならないように削除
 				ff_cache2_already_read	<= 1'b1;
 			end
 			2'd3:	begin
@@ -665,7 +669,7 @@ module vdp_command_cache (
 				ff_cache3_data[23:16]	<= ff_cache3_data_mask[2] ? command_vram_rdata[23:16]: ff_cache3_data[23:16];
 				ff_cache3_data[31:24]	<= ff_cache3_data_mask[3] ? command_vram_rdata[31:24]: ff_cache3_data[31:24];
 				ff_cache3_data_en		<= 1'b1;
-				ff_cache3_data_mask		<= 4'b1111;
+				//ff_cache3_data_mask		<= 4'b1111;	// 20251227:書き込む済データが無効にならないように削除
 				ff_cache3_already_read	<= 1'b1;
 			end
 			endcase
