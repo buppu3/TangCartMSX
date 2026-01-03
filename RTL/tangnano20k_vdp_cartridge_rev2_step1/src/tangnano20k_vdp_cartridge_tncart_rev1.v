@@ -211,7 +211,7 @@ module tangnano20k_vdp_cartridge (
 		.display_g			( w_video_g				),
 		.display_b			( w_video_b				),
 		.force_highspeed	( 1'b0					),
-		.button				( 1'b0					),
+		.button				( 2'b0					),
 		.pulse0				( w_pulse0				),
 		.pulse1				( w_pulse1				),
 		.pulse2				( w_pulse2				),

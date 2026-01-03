@@ -68,7 +68,6 @@ Compiling module 'vdp_video_double_buffer'("C:\git\TangCartMSX\RTL\tangnano20k_v
 Compiling module 'vdp_video_ram_line_buffer'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\th9958\vdp_video_ram_line_buffer.v":58)
 Extracting RAM for identifier 'ff_imem'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\th9958\vdp_video_ram_line_buffer.v":66)
 Compiling module 'vdp_video_out_bilinear'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\th9958\vdp_video_out_bilinear.v":60)
-WARN  (EX3670) : Actual bit length 1 differs from formal bit length 2 for port 'button'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\tangnano20k_vdp_cartridge_tncart_rev1.v":214)
 Compiling module 'DVI_TX_Top'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\dvi_tx\dvi_tx.v":1072)
 Compiling module '**'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\dvi_tx\dvi_tx.v":0)
 Compiling module '**'("C:\git\TangCartMSX\RTL\tangnano20k_vdp_cartridge_rev2_step1\src\dvi_tx\dvi_tx.v":0)
