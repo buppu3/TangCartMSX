@@ -21,26 +21,26 @@
         <SubModule name="u_cpu_interface" Register="256" Lut="243"/>
         <SubModule name="u_timing_control">
             <SubModule name="u_ssg" Register="103" Alu="41" Lut="134"/>
-            <SubModule name="u_screen_mode" Register="179" Alu="31" Lut="716"/>
+            <SubModule name="u_screen_mode" Register="179" Alu="31" Lut="720"/>
             <SubModule name="u_sprite" Register="3" Alu="10" Lut="17">
-                <SubModule name="u_select_visible_planes" Register="109" Alu="20" Lut="253"/>
-                <SubModule name="u_info_collect" Register="112" Alu="14" Lut="288" Ssram="10"/>
+                <SubModule name="u_select_visible_planes" Register="109" Alu="20" Lut="254"/>
+                <SubModule name="u_info_collect" Register="112" Alu="14" Lut="291" Ssram="10"/>
                 <SubModule name="u_makeup_pixel" Register="1547" Alu="15" Lut="1018" Ssram="6"/>
-                <SubModule name="u_divide_table" Register="42" Lut="106" MULT18X18="1" Bsram="1"/>
+                <SubModule name="u_divide_table" Register="42" Lut="117" MULT18X18="1" Bsram="1"/>
             </SubModule>
         </SubModule>
-        <SubModule name="u_command" Register="403" Alu="236" Lut="1176">
-            <SubModule name="u_cache" Register="286" Alu="64" Lut="906"/>
+        <SubModule name="u_command" Register="412" Alu="236" Lut="1192">
+            <SubModule name="u_cache" Register="286" Alu="64" Lut="918"/>
         </SubModule>
         <SubModule name="u_vram_interface" Register="180" Lut="191"/>
-        <SubModule name="u_color_palette" Register="157" Alu="124" Lut="272" Ssram="2">
+        <SubModule name="u_color_palette" Register="157" Alu="124" Lut="271" Ssram="2">
             <SubModule name="u_color_palette_ram" Bsram="1"/>
         </SubModule>
-        <SubModule name="u_upscan" Alu="10" Lut="55">
+        <SubModule name="u_upscan" Alu="10" Lut="56">
             <SubModule name="u_even_line_buffer" Register="1" Lut="1" Bsram="2"/>
             <SubModule name="u_odd_line_buffer" Register="1" Lut="1" Bsram="2"/>
         </SubModule>
-        <SubModule name="u_video_out" Register="60" Alu="17" Lut="85" MULT9X9="4" Ssram="6">
+        <SubModule name="u_video_out" Register="60" Alu="17" Lut="83" MULT9X9="4" Ssram="6">
             <SubModule name="u_double_buffer" Register="71" Lut="45">
                 <SubModule name="u_buf_even" Register="48" Lut="24" Bsram="2"/>
                 <SubModule name="u_buf_odd" Register="48" Lut="24" Bsram="2"/>
@@ -51,5 +51,5 @@
         </SubModule>
     </SubModule>
     <SubModule name="u_dvi" Register="73" Alu="69" Lut="229"/>
-    <SubModule name="u_sdram" Register="160" Lut="91"/>
+    <SubModule name="u_sdram" Register="160" Lut="92"/>
 </Module>
